@@ -27,5 +27,18 @@ module.exports = {
             res.status(200).send(results);
         })
     },
-    login: (req, res) => {}
+    login: (req, res, next) => {
+        let loginSQL = 
+        `SELECT * from users where 
+        email=${db.escape(req.body.email)} 
+        and password=${db.escape(req.body.password)}`
+
+        db.query(loginSQL, (err, results) => {
+                if (err) {
+                    console.log(err)
+                    res.status(400).send(err)
+                };
+                res.status(200).send(results);
+            })
+    }
 }

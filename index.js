@@ -21,8 +21,9 @@ db.getConnection((err, connection) => {
 // Routes API Setup
 app.get('/', (req, res) => res.status(200).send("<h2>Welcome to commerce api</h2>"));
 
-const { usersRoute } = require('./routes')
+const { usersRoute, productsRoute } = require('./routes');
 app.use('/users', usersRoute);
+app.use('/products', productsRoute);
 
 app.listen(PORT, () => console.log('Ecommerce API Ready! : ', PORT))
 
